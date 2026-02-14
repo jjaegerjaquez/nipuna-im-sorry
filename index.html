@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I'm Sorry</title>
+  <style>
+    :root {
+      --bg-start: #fef3f8;
+      --bg-end: #ffe4e9;
+      --card: #fff8fb;
+      --ink: #3a1f28;
+      --yes: #ff4d7a;
+      --no: #5f2f3f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top, var(--bg-start), var(--bg-end));
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: var(--card);
+      border: 2px solid #ffd1de;
+      border-radius: 24px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(115, 46, 69, 0.15);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: clamp(1.5rem, 4vw, 2.6rem);
+      line-height: 1.2;
+    }
+
+    img {
+      width: min(360px, 100%);
+      max-height: 380px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 3px solid #ffc8d8;
+      display: block;
+      margin: 0 auto 24px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(28, 10, 17, 0.6);
+      padding: 20px;
+      z-index: 20;
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-content {
+      width: min(460px, 100%);
+      background: #fff8fb;
+      border: 2px solid #ffc8d8;
+      border-radius: 20px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 22px 45px rgba(20, 5, 10, 0.32);
+    }
+
+    .modal-content h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+    }
+
+    .modal-content img {
+      width: min(360px, 100%);
+      max-height: 320px;
+      margin-bottom: 14px;
+    }
+
+    .close-btn {
+      background: #d24d74;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    #yesBtn {
+      background: var(--yes);
+      transform: scale(1);
+    }
+
+    #noBtn {
+      background: var(--no);
+      transform: scale(1);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>im sorry pookie bear, will you forgive mommy</h1>
+    <img src="20260213_094607.jpg" alt="Centered image" />
+
+    <div class="actions">
+      <button id="yesBtn" type="button">yes i forgive u mommy</button>
+      <button id="noBtn" type="button">no, bitch</button>
+    </div>
+  </main>
+
+  <div id="hoorayModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <h2>hooray!!!</h2>
+      <img src="math-dancing.gif" alt="Math dancing gif" />
+      <button id="closeModalBtn" class="close-btn" type="button">close</button>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const hoorayModal = document.getElementById('hoorayModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    let yesScale = 1;
+    let noScale = 1;
+
+    noBtn.addEventListener('click', () => {
+      yesScale += 0.15;
+      noScale = Math.max(0.2, noScale - 0.12);
+
+      yesBtn.style.transform = `scale(${yesScale})`;
+      noBtn.style.transform = `scale(${noScale})`;
+    });
+
+    yesBtn.addEventListener('click', () => {
+      hoorayModal.classList.add('open');
+      hoorayModal.setAttribute('aria-hidden', 'false');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      hoorayModal.classList.remove('open');
+      hoorayModal.setAttribute('aria-hidden', 'true');
+    });
+
+    hoorayModal.addEventListener('click', (event) => {
+      if (event.target === hoorayModal) {
+        hoorayModal.classList.remove('open');
+        hoorayModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  </script>
+</body>
+</html>
