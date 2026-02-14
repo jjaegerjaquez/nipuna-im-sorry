@@ -187,13 +187,19 @@
 
     let yesScale = 1;
     let noScale = 1;
+    let noClickCount = 0;
 
     noBtn.addEventListener('click', () => {
+      noClickCount += 1;
       yesScale += 0.15;
       noScale = Math.max(0.2, noScale - 0.12);
 
       yesBtn.style.transform = `scale(${yesScale})`;
       noBtn.style.transform = `scale(${noScale})`;
+
+      if (noClickCount >= 3) {
+        noBtn.style.display = 'none';
+      }
     });
 
     yesBtn.addEventListener('click', () => {
