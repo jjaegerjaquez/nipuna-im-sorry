@@ -71,6 +71,7 @@
       place-items: center;
       background: rgba(28, 10, 17, 0.6);
       padding: 20px;
+      overflow: auto;
       z-index: 20;
     }
 
@@ -80,12 +81,14 @@
 
     .modal-content {
       width: min(460px, 100%);
+      max-height: calc(100dvh - 40px);
       background: #fff8fb;
       border: 2px solid #ffc8d8;
       border-radius: 20px;
       padding: 18px;
       text-align: center;
       box-shadow: 0 22px 45px rgba(20, 5, 10, 0.32);
+      overflow: auto;
     }
 
     .modal-content h2 {
@@ -95,7 +98,7 @@
 
     .modal-content img {
       width: min(360px, 100%);
-      max-height: 320px;
+      max-height: min(320px, 50dvh);
       margin-bottom: 14px;
     }
 
@@ -128,6 +131,32 @@
 
     button:active {
       transform: translateY(1px);
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 14px;
+      }
+
+      .card {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-content {
+        width: 100%;
+        max-height: calc(100dvh - 20px);
+        padding: 14px;
+        border-radius: 16px;
+      }
+
+      .modal-content img {
+        max-height: 42dvh;
+      }
     }
   </style>
 </head>
